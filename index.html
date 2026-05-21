@@ -423,6 +423,148 @@
   /* ─── RANGE FILL ─── */
   .range-track { position: relative; }
 
+  /* ─── MOBILE DRAWER OVERLAY ─── */
+  .drawer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.22s cubic-bezier(0.4,0,0.2,1);
+  }
+  .drawer-overlay.open { opacity: 1; }
+
+  .drawer {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--surface);
+    border-radius: 16px 16px 0 0;
+    border-top: 1px solid var(--border);
+    z-index: 101;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .drawer.open { transform: translateY(0); }
+
+  .drawer-handle {
+    width: 36px; height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 12px auto 0;
+    flex-shrink: 0;
+  }
+
+  .drawer-header {
+    padding: 14px 20px 10px;
+    border-bottom: 1px solid var(--border-soft);
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .drawer-list {
+    overflow-y: auto;
+    padding: 8px 0 env(safe-area-inset-bottom, 16px);
+    flex: 1;
+  }
+
+  /* ─── MOBILE NAV BAR ─── */
+  .mobile-nav {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 10px));
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+    gap: 10px;
+  }
+
+  .mob-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+  .mob-btn:active:not(:disabled) { transform: scale(0.92); background: var(--sidebar-bg); }
+  .mob-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+  .mob-btn svg { width: 20px; height: 20px; }
+
+  .mob-chapter-btn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    min-width: 0;
+  }
+  .mob-chapter-btn:active { background: var(--sidebar-bg); }
+
+  .mob-chapter-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .mob-chapter-name {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 13px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+  }
+
+  /* ─── RESPONSIVE: MOBILE ─── */
+  @media (max-width: 640px) {
+    .sidebar { display: none; }
+    .nav-footer { display: none; }
+    .mobile-nav { display: flex; }
+    .drawer-overlay { display: block; }
+
+    .content-header {
+      padding: 0 16px;
+      height: 56px;
+      gap: 10px;
+    }
+    .header-divider { display: none; }
+    .chapter-tag { font-size: 10px; letter-spacing: 0.07em; }
+    .chapter-title { font-size: 15px; }
+    .progress-pill { display: none; }
+
+    .chapter-body {
+      padding: 24px 20px 16px;
+    }
+    .chapter-body h3 { font-size: 22px; }
+    .chapter-body p { font-size: 16px; line-height: 1.8; }
+    .drop-cap::first-letter { font-size: 3em; }
+  }
+
 </style>
 </head>
 <body>
@@ -485,7 +627,35 @@
       </svg>
     </button>
   </footer>
+
+  <!-- Mobile nav bar -->
+  <nav class="mobile-nav" id="mobile-nav">
+    <button class="mob-btn" id="mob-prev-btn" aria-label="Previous chapter">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button class="mob-chapter-btn" id="mob-chapter-btn" aria-label="Select chapter">
+      <span class="mob-chapter-label" id="mob-chapter-label">Chapter 1</span>
+      <span class="mob-chapter-name" id="mob-chapter-name">Loading…</span>
+    </button>
+
+    <button class="mob-btn" id="mob-next-btn" aria-label="Next chapter">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </nav>
 </main>
+
+<!-- Chapter drawer (mobile) -->
+<div class="drawer-overlay" id="drawer-overlay"></div>
+<div class="drawer" id="drawer" role="dialog" aria-label="Select chapter">
+  <div class="drawer-handle"></div>
+  <div class="drawer-header">All Chapters</div>
+  <nav class="drawer-list" id="drawer-list"></nav>
+</div>
 
 <script>
 const chapters = [
@@ -685,6 +855,16 @@ function goTo(index, skipScroll) {
   document.getElementById('prev-btn').disabled = current === 0;
   document.getElementById('next-btn').disabled = current === chapters.length - 1;
 
+  const mobPrev = document.getElementById('mob-prev-btn');
+  const mobNext = document.getElementById('mob-next-btn');
+  if (mobPrev) mobPrev.disabled = current === 0;
+  if (mobNext) mobNext.disabled = current === chapters.length - 1;
+
+  const mobLabel = document.getElementById('mob-chapter-label');
+  const mobName = document.getElementById('mob-chapter-name');
+  if (mobLabel) mobLabel.textContent = `Chapter ${current + 1}`;
+  if (mobName) mobName.textContent = ch.title;
+
   if (!skipScroll) {
     document.getElementById('scroll-area').scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -722,6 +902,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const saved = parseInt(getCookie('readerChapter'));
   goTo(isNaN(saved) ? 0 : saved, true);
   updateSliderFill(slider);
+
+  // Mobile prev/next
+  document.getElementById('mob-prev-btn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('mob-next-btn').addEventListener('click', () => goTo(current + 1));
+
+  // Chapter drawer open/close
+  const overlay = document.getElementById('drawer-overlay');
+  const drawer = document.getElementById('drawer');
+
+  function openDrawer() {
+    overlay.classList.add('open');
+    drawer.classList.add('open');
+    buildDrawerList();
+  }
+
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    drawer.classList.remove('open');
+  }
+
+  document.getElementById('mob-chapter-btn').addEventListener('click', openDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  function buildDrawerList() {
+    const list = document.getElementById('drawer-list');
+    list.innerHTML = '';
+    chapters.forEach((ch, i) => {
+      const item = document.createElement('div');
+      item.className = 'chapter-item' + (i === current ? ' active' : '');
+      item.innerHTML = `
+        <span class="chapter-num">${String(i + 1).padStart(2, '0')}</span>
+        <div class="chapter-info">
+          <div class="chapter-name">${ch.title}</div>
+          <div class="chapter-words">${ch.words}</div>
+        </div>`;
+      item.addEventListener('click', () => { goTo(i); closeDrawer(); });
+      list.appendChild(item);
+    });
+  }
 });
 </script>
 </body>
