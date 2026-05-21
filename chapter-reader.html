@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter Reader</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FAF9F7;
+    --sidebar-bg: #F1EFE8;
+    --surface: #FFFFFF;
+    --accent: #D97557;
+    --accent-soft: #F5EDE8;
+    --text: #2C2C2A;
+    --text-muted: #888780;
+    --text-hint: #B4B2A9;
+    --border: #D3D1C7;
+    --border-soft: #E5E3DC;
+    --sidebar-w: 280px;
+    --header-h: 72px;
+    --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-header {
+    padding: 0 20px;
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .book-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .book-icon svg { width: 16px; height: 16px; }
+
+  .sidebar-header h2 {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ─── SLIDER AREA ─── */
+  .slider-wrap {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border-soft);
+    flex-shrink: 0;
+  }
+
+  .slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .slider-label {
+    font-size: 11px;
+    color: var(--text-hint);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .slider-badge {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  .chapter-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .chapter-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 0 3px var(--accent-soft), 0 1px 4px rgba(0,0,0,0.12);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+
+  .chapter-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .chapter-range:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 0 5px var(--accent-soft), 0 2px 8px rgba(217,117,87,0.25);
+    transform: scale(1.1);
+  }
+
+  /* ─── CHAPTER LIST ─── */
+  .chapter-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .chapter-list::-webkit-scrollbar { width: 4px; }
+  .chapter-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .chapter-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background var(--transition);
+    border-left: 2.5px solid transparent;
+  }
+
+  .chapter-item:hover { background: rgba(0,0,0,0.04); }
+
+  .chapter-item.active {
+    background: var(--accent-soft);
+    border-left-color: var(--accent);
+  }
+
+  .chapter-num {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-hint);
+    min-width: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .chapter-item.active .chapter-num { color: var(--accent); }
+
+  .chapter-info { flex: 1; min-width: 0; }
+
+  .chapter-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+  }
+
+  .chapter-item.active .chapter-name { font-weight: 500; color: var(--text); }
+
+  .chapter-words {
+    font-size: 11px;
+    color: var(--text-hint);
+    margin-top: 1px;
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .content-header {
+    height: var(--header-h);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    flex-shrink: 0;
+    gap: 16px;
+  }
+
+  .chapter-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 18px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  .chapter-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+  }
+
+  .progress-pill {
+    font-size: 12px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    font-weight: 400;
+  }
+
+  /* ─── SCROLL AREA ─── */
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .scroll-area::-webkit-scrollbar { width: 5px; }
+  .scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  .chapter-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 52px 48px 32px;
+  }
+
+  .chapter-body h3 {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .chapter-meta {
+    font-size: 12px;
+    color: var(--text-hint);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .chapter-meta span { display: flex; align-items: center; gap: 4px; }
+
+  .drop-cap::first-letter {
+    font-family: 'Lora', Georgia, serif;
+    float: left;
+    font-size: 3.8em;
+    line-height: 0.82;
+    padding-right: 10px;
+    padding-top: 4px;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .chapter-body p {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 17.5px;
+    line-height: 1.85;
+    color: var(--text);
+    margin-bottom: 1.6em;
+    font-weight: 400;
+  }
+
+  .chapter-body p:not(:first-of-type) { text-indent: 1.5em; }
+
+  .chapter-body blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin: 2em 0;
+    font-family: 'Lora', Georgia, serif;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* ─── NAV FOOTER ─── */
+  .nav-footer {
+    padding: 16px 48px;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .nav-btn:hover:not(:disabled) {
+    background: var(--sidebar-bg);
+    border-color: var(--text-muted);
+  }
+
+  .nav-btn:active:not(:disabled) { transform: scale(0.97); }
+
+  .nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .nav-btn svg { width: 16px; height: 16px; }
+
+  .nav-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .nav-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--border);
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+
+  .nav-dot.active {
+    background: var(--accent);
+    width: 16px;
+    border-radius: 3px;
+  }
+
+  .nav-count {
+    font-size: 12px;
+    color: var(--text-hint);
+  }
+
+  /* ─── PAGE TRANSITION ─── */
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chapter-body.entering {
+    animation: fadeSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar {
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .content-header { position: relative; }
+
+  /* ─── RANGE FILL ─── */
+  .range-track { position: relative; }
+
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="book-icon">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 2h7.5a1.5 1.5 0 0 1 1.5 1.5v9A1.5 1.5 0 0 1 10.5 14H3V2Z" stroke="white" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M10.5 14a1.5 1.5 0 0 0 0-3H3" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M5.5 5.5h4M5.5 8h3" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h2>Contents</h2>
+  </div>
+
+  <div class="slider-wrap">
+    <div class="slider-label-row">
+      <span class="slider-label">Navigate chapters</span>
+      <span class="slider-badge" id="slider-badge">Ch. 1</span>
+    </div>
+    <div class="range-track">
+      <input type="range" class="chapter-range" id="chapter-slider" min="0" max="7" value="0" step="1">
+    </div>
+  </div>
+
+  <nav class="chapter-list" id="chapter-list"></nav>
+</aside>
+
+<main class="main">
+  <header class="content-header">
+    <span class="chapter-tag" id="header-tag">Chapter 1</span>
+    <div class="header-divider"></div>
+    <h1 class="chapter-title" id="chapter-title">The Last Light of Evening</h1>
+    <span class="progress-pill" id="progress-pill">1 of 8</span>
+    <div class="progress-bar" id="progress-bar"></div>
+  </header>
+
+  <div class="scroll-area" id="scroll-area">
+    <div class="chapter-body" id="chapter-body"></div>
+  </div>
+
+  <footer class="nav-footer">
+    <button class="nav-btn" id="prev-btn">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Previous
+    </button>
+
+    <div class="nav-center">
+      <div class="nav-dots" id="nav-dots"></div>
+      <span class="nav-count" id="nav-count">Chapter 1 of 8</span>
+    </div>
+
+    <button class="nav-btn" id="next-btn">
+      Next
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </footer>
+</main>
+
+<script>
+const chapters = [
+  {
+    title: "The Last Light of Evening",
+    words: "1,240 words",
+    content: `<p class="drop-cap">The town of Aldervane sat at the edge of the known world, or so its inhabitants believed. Perched on limestone bluffs above a river that had no name on any map, it was the kind of place that felt perpetually surprised to find itself still standing. The streets were narrow and uneven, cobblestones worn smooth by centuries of footsteps, and the houses leaned into one another like old friends sharing a secret.</p>
+<p>Mara had lived there all her thirty-one years and had never once thought to leave. It was not complacency that kept her — it was something more like gravity. The town pulled at her in ways she could not always name: the smell of bread from the bakery on Cress Lane each morning, the way light fell through the valley at dusk, turning everything amber and gold.</p>
+<blockquote>She understood, in that particular hour, that some places are not where you live but what you are made of.</blockquote>
+<p>That evening, she stood at her kitchen window watching the last light dissolve behind the ridge. A letter had arrived that afternoon — a thick envelope with a wax seal she did not recognize, addressed in a handwriting that was somehow both familiar and entirely strange. She had not yet opened it. She was not sure she wanted to.</p>
+<p>The kettle began to whistle. Mara turned from the window and made her tea, moving through the familiar rituals of her small kitchen with the ease of someone for whom routine is a form of prayer. Outside, the stars were beginning to appear, one by one, as if being lit by an unseen hand.</p>
+<p>She sat at the table. She looked at the envelope. She picked it up, turned it over, and finally broke the seal.</p>`
+  },
+  {
+    title: "What the Letter Said",
+    words: "1,380 words",
+    content: `<p class="drop-cap">The handwriting inside was neater than the address on the envelope, as if the writer had paused, composed themselves, and begun again. Mara read the first line three times before she trusted her eyes.</p>
+<p>It was from her uncle Casimir, who had been dead for eleven years.</p>
+<p>Or so she had been told. The funeral had been held on a grey October morning; she had stood at the graveside in borrowed shoes that were half a size too small, watching the casket disappear into the earth and feeling the particular numbness that comes not from grief alone but from grief mixed with unresolved things. She and Casimir had not spoken in the three years before his alleged death. His absence, when it finally became official, had felt less like a loss than a confirmation of something she had already been living with.</p>
+<blockquote>The dead, it turns out, have excellent penmanship.</blockquote>
+<p>The letter explained little and implied much. He was alive. He had been alive all this time. The reasons were complicated and he would explain them in person if she was willing to hear them. He was at a place called the Heron House, four hours north by rail, on the edge of a marsh that most maps described only as unmappable terrain.</p>
+<p>He had left her something, years ago, in a hiding place she would remember if she thought about it carefully. A small tin box, behind the loose brick in the garden wall. She had put a marble in that gap when she was seven years old; she remembered because Casimir had helped her find the perfect one, a blue swirled sphere that caught the light like a tiny planet. She had not thought about it in decades.</p>
+<p>Mara set the letter on the table and went to the garden.</p>`
+  },
+  {
+    title: "The Heron House",
+    words: "1,510 words",
+    content: `<p class="drop-cap">The train north was nearly empty. Mara sat in a window seat with the tin box in her lap and watched the landscape change — from the cultivated fields around Aldervane to wilder, more ambiguous country, land that looked as though it had never quite made up its mind what to be.</p>
+<p>She had opened the box in the garden, kneeling in the damp grass with a flashlight between her teeth. Inside was a key, a folded photograph, and a small card with three words in Casimir's unmistakable hand: <em>Come find me.</em> The photograph was of a building — long and low, its windows the colour of old glass, surrounded by reeds and water. On the back: <em>Heron House, 1987.</em></p>
+<p>The key was old, brass, its head shaped like a bird in flight.</p>
+<blockquote>There are some doors you spend your whole life standing on the wrong side of without knowing it.</blockquote>
+<p>She arrived at dusk. The station was a single platform with a painted sign and no one waiting. The taxi she had arranged took her down a road that narrowed steadily until the trees closed overhead and the tyres began to crunch on gravel. When the house appeared through the last line of trees, she recognized it immediately — not from the photograph, but from somewhere older and less explicable.</p>
+<p>A light was on in a window on the ground floor. As she stepped out of the taxi, the door opened, and a man she would not have recognized anywhere else stood in the doorway, older, thinner, but with the same eyes she remembered: light brown, slightly too close together, always carrying an expression of mild apology.</p>
+<p>"Mara," he said. Just that.</p>
+<p>She paid the driver without looking away from the door. The taxi reversed down the gravel track. In the silence it left behind, the reeds whispered against each other in the dark.</p>`
+  },
+  {
+    title: "Eleven Years of Silence",
+    words: "1,290 words",
+    content: `<p class="drop-cap">The inside of the house smelled of wood smoke and old paper, and of something she could not name — some particular combination of light and shadow that existed only in rooms that have been lived in quietly for a very long time. Books were everywhere. Not arranged, exactly, but not chaotic either: more as though they had gradually found their own logic, an organizational system known only to the house itself.</p>
+<p>Casimir made tea. Mara sat at a table near the window and looked out at the marsh, which was silver under the early moon. Neither of them spoke for longer than felt comfortable, and then a little longer still, until the silence became something they were sitting in together rather than a gap between them.</p>
+<p>"You should be angry," he said eventually.</p>
+<p>"I am." She wrapped her hands around the mug. "Tell me anyway."</p>
+<p>What he told her took most of the night. It was not a simple story and he did not try to make it one. He had been in danger — the kind of danger that exists at the intersection of other people's money and secrets, neither of which had anything to do with him originally but had eventually required him to disappear. He had not told her because he had not trusted the telling to be safe. He had kept her away from it because it was the only thing he could give her.</p>
+<blockquote>"I let you grieve for me so that nothing else would come for you. I have not forgiven myself for it."</blockquote>
+<p>Mara listened. The fire burned down. Outside, something moved in the reeds — a bird, or the wind, or something neither of those things. When he had finished, she sat quietly for a long time.</p>
+<p>"Is it over?" she asked. "The danger?"</p>
+<p>He looked at the table. "Mostly," he said. And then: "There is one thing left."</p>`
+  },
+  {
+    title: "The Map Below the Map",
+    words: "1,450 words",
+    content: `<p class="drop-cap">The room Casimir used as a study was at the back of the house, looking out over water. On one wall he had pinned a map — not an ordinary map, but a composite of dozens of smaller fragments, pieced together with pins and string into something that took Mara a moment to recognize as a place at all.</p>
+<p>When she did recognize it, she felt the floor shift slightly, as though the house had sighed.</p>
+<p>It was a map of the region around Aldervane. But it was not any version she had seen before. The features were the same — the river, the ridge, the limestone bluffs — but the town itself was marked differently, and there were buildings and pathways marked on it that did not exist in any version of Aldervane she had ever walked through.</p>
+<p>"What is this?" she asked.</p>
+<p>Casimir stood beside her. He pointed to a spot near the centre of the map, slightly north of where the market square should have been. "This is what they wanted," he said. "What they have always wanted. What I found, and should not have."</p>
+<p>The spot was labelled, in very small letters, in a hand she did not recognize: <em>The still place.</em></p>
+<blockquote>There are things beneath every town that the town has forgotten it is built on top of.</blockquote>
+<p>He explained. It took a while. The story was old — older than either of them, older than the feud that had required his disappearance, older perhaps than Aldervane itself. There was something beneath the town: not treasure in the conventional sense, not ruins, but something that functioned, still, according to principles he did not entirely understand.</p>
+<p>People had been looking for it for a very long time. Some of those people were still looking.</p>
+<p>And now they had connected his name to it, and through his name — perhaps — to hers.</p>`
+  },
+  {
+    title: "Things Beneath the Town",
+    words: "1,330 words",
+    content: `<p class="drop-cap">She returned to Aldervane on the early train, before the morning was properly light. The town appeared as it always did — settled, unassuming, holding its shapes against the sky with the patience of a place that has stopped trying to prove anything. She walked from the station without taking a taxi, wanting the time on foot, wanting to look at the streets she had known all her life and see if they looked different.</p>
+<p>They did not, and they did.</p>
+<p>She had been given two names by Casimir before she left. One was a woman named Dort who ran the stationery shop on the high street and had, apparently, known about the still place for thirty years without ever telling anyone. The other was a man she had gone to school with — Renner, who now worked at the land registry and who had, three months ago, quietly pulled a set of very old deeds from the public record without explanation.</p>
+<p>She went to the stationery shop first.</p>
+<blockquote>Dort looked at her for a long moment when she said the words. Then she locked the front door and turned the sign to Closed.</blockquote>
+<p>The back of the shop was not what Mara had expected. She had bought notepads and ink cartridges here a dozen times; she had never looked past the counter. Behind it was a room that was less a storeroom and more a kind of archive — shelves of document boxes, a long table covered with papers, and on one wall, pinned like Casimir's map but more extensive, a version of Aldervane that was even stranger than the one she had seen the night before.</p>
+<p>"How long have you known?" Mara asked.</p>
+<p>Dort looked at the map. "Long enough," she said, "to know we're running out of time."</p>`
+  },
+  {
+    title: "The Still Place",
+    words: "1,620 words",
+    content: `<p class="drop-cap">It was beneath the old reading room at the east end of the market square — a building Mara had passed ten thousand times, had borrowed books from, had sat in on rainy afternoons as a child while her mother ran errands. The entrance was through the archive in the basement, through a door behind a shelf of newspapers that no one had looked at in forty years.</p>
+<p>Dort went first, carrying a lamp. Mara followed. The air changed immediately as they descended: cooler, steadier, with a quality she could not name except that it felt like the air in a place that had been thinking quietly to itself for a very long time.</p>
+<p>The passage was stone, the walls smooth from water and age. It ran straight for thirty metres and then curved, gently, and then opened into a space that made Mara stop walking entirely.</p>
+<blockquote>It was not large. It was not what she had imagined. It was something far more difficult: it was exactly what she had always half-known must exist somewhere, without ever having let herself form the thought.</blockquote>
+<p>A circular room, perhaps six metres across. The walls were the same limestone as the bluffs above the river, but worked — carved with symbols she did not recognize and could not stop looking at. In the centre, a shallow basin in the floor, filled with water that was perfectly still despite having no apparent source.</p>
+<p>The lamp made the water glow faintly, gold at the edges, dark at the centre.</p>
+<p>"What does it do?" Mara whispered.</p>
+<p>Dort set the lamp on a ledge carved for exactly that purpose. "No one entirely knows," she said. "Casimir came close, once. But knowing and having are different things, and he had the sense to stop."</p>
+<p>Mara crouched at the edge of the basin. Her reflection looked up at her, and for a moment — just a moment — it did not move when she did.</p>`
+  },
+  {
+    title: "What Remains",
+    words: "1,180 words",
+    content: `<p class="drop-cap">Three weeks later, Mara sat again at her kitchen window. The letter from Casimir was in the drawer beside the table. The tin box was on the shelf. The key — she had used it, eventually, to lock the door beneath the reading room, and she wore it now on a cord around her neck, the weight of it constant and specific against her sternum.</p>
+<p>The others who had been looking had arrived, as Casimir had warned they would. They had found the entrance, found it locked, and found Dort ready for them with thirty years of preparation and a very specific kind of patience. Mara did not ask, afterwards, exactly what Dort had said to them. Some conversations do not require witnesses.</p>
+<p>She had spoken with Casimir twice by telephone since returning. The conversations were awkward and full of pauses and slowly, slowly becoming something else. There was a long way still to go. She was, on balance, willing to go it.</p>
+<blockquote>Grief, she had come to understand, is not a wall you pass through but a country you learn to live in. Some days you forget where the borders are. That is not the worst thing.</blockquote>
+<p>Outside, the light was doing its evening thing over the valley, turning the familiar world briefly, generously golden. The river caught it and threw it back. The rooftops gleamed. Somewhere below, on Cress Lane, the bakery was closing, and she could smell, faintly, bread.</p>
+<p>Mara made her tea. She sat at the table. She was in the town she had always known, and the town was the same, and the town was entirely different, and so — she thought — was she.</p>
+<p>That seemed, on balance, like enough for now.</p>`
+  }
+];
+
+let current = 0;
+
+function setCookie(name, val, days) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 86400000);
+  document.cookie = `${name}=${val};expires=${d.toUTCString()};path=/`;
+}
+
+function getCookie(name) {
+  for (let c of document.cookie.split(';')) {
+    const [k, v] = c.trim().split('=');
+    if (k === name) return v;
+  }
+  return null;
+}
+
+function updateProgressBar() {
+  const pct = chapters.length === 1 ? 100 : (current / (chapters.length - 1)) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+}
+
+function updateDots() {
+  const container = document.getElementById('nav-dots');
+  container.innerHTML = '';
+  chapters.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === current ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    container.appendChild(dot);
+  });
+}
+
+function buildList() {
+  const list = document.getElementById('chapter-list');
+  list.innerHTML = '';
+  chapters.forEach((ch, i) => {
+    const item = document.createElement('div');
+    item.className = 'chapter-item' + (i === current ? ' active' : '');
+    item.innerHTML = `
+      <span class="chapter-num">${String(i + 1).padStart(2, '0')}</span>
+      <div class="chapter-info">
+        <div class="chapter-name">${ch.title}</div>
+        <div class="chapter-words">${ch.words}</div>
+      </div>`;
+    item.addEventListener('click', () => goTo(i));
+    list.appendChild(item);
+  });
+}
+
+function goTo(index, skipScroll) {
+  current = Math.max(0, Math.min(chapters.length - 1, index));
+  setCookie('readerChapter', current, 30);
+
+  const ch = chapters[current];
+  document.getElementById('chapter-title').textContent = ch.title;
+  document.getElementById('header-tag').textContent = `Chapter ${current + 1}`;
+  document.getElementById('progress-pill').textContent = `${current + 1} of ${chapters.length}`;
+  document.getElementById('nav-count').textContent = `Chapter ${current + 1} of ${chapters.length}`;
+  document.getElementById('slider-badge').textContent = `Ch. ${current + 1}`;
+  document.getElementById('chapter-slider').value = current;
+
+  document.title = ch.title + ' — Chapter Reader';
+
+  const body = document.getElementById('chapter-body');
+  body.classList.remove('entering');
+  void body.offsetWidth;
+  body.innerHTML = `<h3>Chapter ${current + 1}</h3><div class="chapter-meta"><span>📖 ${ch.words}</span></div>` + ch.content;
+  body.classList.add('entering');
+
+  document.getElementById('prev-btn').disabled = current === 0;
+  document.getElementById('next-btn').disabled = current === chapters.length - 1;
+
+  if (!skipScroll) {
+    document.getElementById('scroll-area').scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  buildList();
+  updateDots();
+  updateProgressBar();
+
+  const slider = document.getElementById('chapter-range');
+  if (slider) updateSliderFill(slider);
+}
+
+function updateSliderFill(el) {
+  const pct = (el.value / (chapters.length - 1)) * 100;
+  el.style.background = `linear-gradient(to right, var(--accent) ${pct}%, var(--border) ${pct}%)`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById('chapter-slider');
+  slider.max = chapters.length - 1;
+
+  slider.addEventListener('input', () => {
+    goTo(parseInt(slider.value));
+    updateSliderFill(slider);
+  });
+
+  document.getElementById('prev-btn').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next-btn').addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+  });
+
+  const saved = parseInt(getCookie('readerChapter'));
+  goTo(isNaN(saved) ? 0 : saved, true);
+  updateSliderFill(slider);
+});
+</script>
+</body>
+</html>
