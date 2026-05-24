@@ -221,16 +221,6 @@
     gap: 16px;
   }
 
-  .book-title-tag {
-    font-family: 'Lora', Georgia, serif;
-    font-size: 13px;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--text-muted);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
   .chapter-tag {
     font-size: 11px;
     font-weight: 500;
@@ -572,7 +562,6 @@
       gap: 10px;
     }
     .header-divider { display: none; }
-    .book-title-tag { display: none; }
     .chapter-tag { font-size: 10px; letter-spacing: 0.07em; }
     .chapter-title { font-size: 15px; }
     .progress-pill { display: none; }
@@ -583,6 +572,16 @@
     .chapter-body h3 { font-size: 22px; }
     .chapter-body p { font-size: 16px; line-height: 1.8; }
     .drop-cap::first-letter { font-size: 3em; }
+  }
+
+  .book-title-tag {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
 </style>
@@ -809,67 +808,129 @@ const chapters = [
   words: "435 words",
   content: `
     <p class="drop-cap">My phone was too far away to play games on, and my book was out of reach too.</p>
-    <p>That's when I noticed the manuscript I had given Yuna earlier lying under her pillow. I'd handed it to her right before we left for summer vacation so she could read it during the drive.</p>
-    <p>Since it was close enough, I picked it up and started reading. I had almost forgotten what I'd written, so remembering the story as I read through it was strangely fun.</p>
+
+    <p>That’s when I noticed the manuscript I had given Yuna earlier lying under her pillow. I’d handed it to her right before we left for summer vacation so she could read it during the drive.</p>
+
+    <p>Since it was close enough, I picked it up and started reading. I had almost forgotten what I’d written, so remembering the story as I read through it was strangely fun.</p>
+
     <p>A moment later, I froze.</p>
-    <p>"T-this can't be right… right?" I whispered to myself.</p>
+
+    <p>“T-this can’t be right… right?” I whispered to myself.</p>
+
     <p>Near the beginning of the manuscript, one line immediately caught my attention.</p>
-    <p><em>"Yuna caught a cold after the thunderstorm that night. She recovered two days later."</em></p>
+
+    <p><em>“Yuna caught a cold after the thunderstorm that night. She recovered two days later.”</em></p>
+
     <p>It was exactly what had happened.</p>
-    <p>According to the manuscript, today was supposed to be the final day of her fever, so I decided I'd get her something nice to eat once she woke up.</p>
+
+    <p>According to the manuscript, today was supposed to be the final day of her fever, so I decided I’d get her something nice to eat once she woke up.</p>
+
     <p>To my surprise, when she finally opened her eyes, she looked completely healthy.</p>
-    <p>"You're feeling better already?" I asked.</p>
-    <p>Yuna stretched slightly before nodding. "Mhm. My head doesn't hurt anymore."</p>
+
+    <p>“You’re feeling better already?” I asked.</p>
+
+    <p>Yuna stretched slightly before nodding. “Mhm. My head doesn’t hurt anymore.”</p>
+
     <p>I pressed my hand lightly against her forehead just to make sure.</p>
+
     <p>Normal temperature.</p>
+
     <p>For some reason, instead of relief, I felt a strange chill run down my back.</p>
+
     <p>The manuscript had been right.</p>
+
     <p>Again.</p>
+
     <p>After getting ready, we headed down to the beach together. The weather had completely changed compared to the storm from two nights ago. The sky was clear, the air was warm, and the sea reflected sunlight so brightly that it almost hurt to look at.</p>
+
     <p>After swimming for a while, the adults decided to stay near the shore and relax.</p>
+
     <p>That was when Yuna suddenly pointed farther out toward the water.</p>
-    <p>"Can we go paddleboarding?" she asked.</p>
-    <p>"Sure."</p>
+
+    <p>“Can we go paddleboarding?” she asked.</p>
+
+    <p>“Sure.”</p>
+
     <p>A few minutes later, we were already drifting farther away from the beach. Yuna sat near the front of the board while I handled the paddling from behind.</p>
+
     <p>The waves were calm enough that the board barely rocked.</p>
+
     <p>For a while neither of us said anything.</p>
+
     <p>Then Yuna quietly spoke up.</p>
-    <p>"Thanks for taking care of me."</p>
-    <p>"It was nothing, really."</p>
-    <p>"Still." She looked down at the water. "You stayed with me the whole time."</p>
-    <p>I shrugged lightly. "Don't worry about it. I just wanted to make sure my sister was okay."</p>
+
+    <p>“Thanks for taking care of me.”</p>
+
+    <p>“It was nothing, really.”</p>
+
+    <p>“Still.” She looked down at the water. “You stayed with me the whole time.”</p>
+
+    <p>I shrugged lightly. “Don’t worry about it. I just wanted to make sure my sister was okay.”</p>
+
     <p>The moment the words left my mouth, I realized I was smiling.</p>
+
     <p>Yuna stared at me for a second before smiling too.</p>
+
     <p>Then her expression suddenly turned more serious.</p>
-    <p>"One more thing," she said quietly. "About the manuscript…"</p>
+
+    <p>“One more thing,” she said quietly. “About the manuscript…”</p>
+
     <p>I already knew what she was going to ask.</p>
-    <p>"How did you know I was going to get sick?"</p>
+
+    <p>“How did you know I was going to get sick?”</p>
+
     <p>The ocean suddenly felt much quieter.</p>
-    <p>To be honest, I didn't know myself.</p>
+
+    <p>To be honest, I didn’t know myself.</p>
+
     <p>I had written that scene long before the thunderstorm happened. Long before she got sick.</p>
+
     <p>And yet somehow, every detail matched perfectly.</p>
-    <p>"Pure coincidence, I guess," I replied.</p>
+
+    <p>“Pure coincidence, I guess,” I replied.</p>
+
     <p>Even to me, it sounded unconvincing.</p>
+
     <p>Yuna looked like she wanted to say something else, though after a moment she just sighed and leaned back slightly.</p>
-    <p>"You're weird sometimes," she mumbled.</p>
-    <p>"Thanks."</p>
-    <p>"That wasn't a compliment."</p>
+
+    <p>“You’re weird sometimes,” she mumbled.</p>
+
+    <p>“Thanks.”</p>
+
+    <p>“That wasn’t a compliment.”</p>
+
     <p>Despite everything, we both laughed.</p>
+
     <p>After that, we stopped thinking about the manuscript for a while and just enjoyed the rest of the afternoon together.</p>
-    <p>Though… maybe "enjoyed" isn't the right word for all of it.</p>
+
+    <p>Though… maybe “enjoyed” isn’t the right word for all of it.</p>
+
     <p>Especially not the part where Yuna repeatedly shoved me off the paddleboard whenever I got distracted.</p>
+
     <p>By the time we returned to the hotel, the sun had already started setting.</p>
+
     <p>After showering and changing clothes, we ended up sitting together on the bed again with the manuscript between us.</p>
+
     <p>At first, reading it together was actually fun.</p>
+
     <p>Yuna kept reacting dramatically to scenes she liked, while I sat there dying from embarrassment every time she complimented my writing out loud.</p>
+
     <p>Eventually, though, we reached the end of the chapter.</p>
+
     <p>And the final line immediately caught both of our attention.</p>
-    <p><em>"He suddenly heard a familiar voice.</em></p>
-    <p><em>He turned around… and there she stood."</em></p>
+
+    <p><em>“He suddenly heard a familiar voice.</em></p>
+
+    <p><em>He turned around… and there she stood.”</em></p>
+
     <p>The room fell silent.</p>
+
     <p>I slowly looked over at Yuna.</p>
+
     <p>She looked just as uneasy as I felt.</p>
+
     <p>For some reason, those words left a heavy feeling in my chest.</p>
+
     <p>Almost as if the manuscript was warning me about something waiting for me after summer vacation ended.</p>
   `
 },
@@ -878,115 +939,218 @@ const chapters = [
   words: "432 words",
   content: `
     <p class="drop-cap">"Kids, are you done packing?" Yuna's mother asked from the living room.</p>
+
     <p>The final day of the vacation had arrived, so we had to start packing to go back home.</p>
-    <p>We didn't have that much stuff with us to begin with, so everything went pretty smoothly.</p>
-    <p>"Got any other future telling stories for me?" Yuna asked as soon as we entered the car.</p>
-    <p>The other stories I had written didn't even come close to how accurate that manuscript had been, so I didn't want to disappoint her.</p>
-    <p>"Nope," I replied.</p>
+
+    <p>We didn’t have that much stuff with us to begin with, so everything went pretty smoothly.</p>
+
+    <p>“Got any other future telling stories for me?” Yuna asked as soon as we entered the car.</p>
+
+    <p>The other stories I had written didn’t even come close to how accurate that manuscript had been, so I didn’t want to disappoint her.</p>
+
+    <p>“Nope,” I replied.</p>
+
     <p>When we arrived home, it was already morning.</p>
+
     <p>Dad and I headed to the bakery to grab breakfast and lunch before unpacking everything.</p>
-    <p>"Did you two have fun?" Dad asked while we walked down the street.</p>
-    <p>"Yeah," I answered.</p>
+
+    <p>“Did you two have fun?” Dad asked while we walked down the street.</p>
+
+    <p>“Yeah,” I answered.</p>
+
     <p>He smiled slightly.</p>
-    <p>"It looked like you two had the time of your lives together."</p>
-    <p>Looking back on it, he really wasn't wrong.</p>
+
+    <p>“It looked like you two had the time of your lives together.”</p>
+
+    <p>Looking back on it, he really wasn’t wrong.</p>
+
     <p>I did have a lot of fun with Yuna.</p>
+
     <p>After we got home, things slowly returned to normal.</p>
+
     <p>Dad went back to work.</p>
+
     <p>The apartment became quiet again.</p>
+
     <p>And somehow, after spending almost every day with Yuna, my room felt emptier than usual.</p>
+
     <p>A few days later, summer vacation ended.</p>
+
     <p>Standing in front of the school gates that morning, I spotted a familiar figure almost immediately.</p>
+
     <p>For a split second, I thought I recognized someone near the entrance.</p>
+
     <p>But by the time I looked again, they were gone.</p>
+
     <p>I brushed it off and headed to class.</p>
+
     <p>During math, a phone suddenly rang from inside my bag.</p>
+
     <p>The entire classroom went silent.</p>
+
     <p>I immediately realized I had forgotten to leave my phone in my locker.</p>
+
     <p>After apologizing, I asked the teacher if I could quickly turn it off.</p>
+
     <p>Luckily, he let it slide this time.</p>
+
     <p>At my locker, I checked the screen.</p>
+
     <p>It was Yuna.</p>
-    <p><em>Still at school. I'll text you later.</em></p>
+
+    <p><em>Still at school. I’ll text you later.</em></p>
+
     <p>After sending the message, I headed back to class.</p>
+
     <p>Just as I walked out of the school gates later that afternoon, my phone rang again.</p>
+
     <p>Yuna had somehow already figured out what time my classes ended.</p>
-    <p>She told me she'd be staying over soon since she only lived around ten minutes away by bike.</p>
+
+    <p>She told me she’d be staying over soon since she only lived around ten minutes away by bike.</p>
+
     <p>After dinner, Yuna and I ended up sitting on the floor of my room reading the manuscript together again.</p>
-    <p>"You seriously still think this thing predicts the future?" I asked.</p>
-    <p>"After everything that happened during vacation?" she replied immediately. "Yeah."</p>
+
+    <p>“You seriously still think this thing predicts the future?” I asked.</p>
+
+    <p>“After everything that happened during vacation?” she replied immediately. “Yeah.”</p>
+
     <p>Right as I was about to answer, the doorbell rang.</p>
-    <p>"Haru, can you get that?" Dad called from the kitchen.</p>
+
+    <p>“Haru, can you get that?” Dad called from the kitchen.</p>
+
     <p>Without thinking much of it, I headed downstairs.</p>
+
     <p>But the moment I opened the front door, my body froze.</p>
+
     <p>For a second, I genuinely thought I was imagining things again.</p>
-    <p>"Haru?"</p>
-    <p>Standing there was someone I hadn't seen in years.</p>
+
+    <p>“Haru?”</p>
+
+    <p>Standing there was someone I hadn’t seen in years.</p>
   `
 },
 {
   title: "Sleepover",
   words: "652 words",
   content: `
-    <p class="drop-cap">"Haru?"</p>
-    <p>Standing there was someone I hadn't seen in years.</p>
+    <p class="drop-cap">“Haru?”</p>
+
+    <p>Standing there was someone I hadn’t seen in years.</p>
+
     <p>For a few seconds, I completely froze.</p>
+
     <p>I had way too many questions, but none of them came out.</p>
-    <p>"S-Sora…? H-Hello," I replied in shock.</p>
+
+    <p>“S-Sora…? H-Hello,” I replied in shock.</p>
+
     <p>Hearing the way I spoke, Yuna suddenly snuck up behind me and wrapped her arms around my neck before greeting the girl at the door herself.</p>
-    <p>"Hi, I'm Yuna Nakamura. You can call me Yuna," she said cheerfully. "I'm Haru's sister."</p>
+
+    <p>“Hi, I’m Yuna Nakamura. You can call me Yuna,” she said cheerfully. “I’m Haru’s sister.”</p>
+
     <p>Sora blinked in surprise.</p>
-    <p>"I didn't know you had a sister," she said before quickly correcting herself. "Oh, right. I'm Sora Fujimoto. You can just call me Sora."</p>
-    <p>"Nice to meet you!" Yuna replied immediately.</p>
-    <p>"Come in," I said.</p>
+
+    <p>“I didn’t know you had a sister,” she said before quickly correcting herself. “Oh, right. I’m Sora Fujimoto. You can just call me Sora.”</p>
+
+    <p>“Nice to meet you!” Yuna replied immediately.</p>
+
+    <p>“Come in,” I said.</p>
+
     <p>Sora quietly stepped inside and followed us into the living room, where Dad and Ayaka were sitting on the couch watching TV.</p>
-    <p>"Dad," I said, "look who came to visit."</p>
+
+    <p>“Dad,” I said, “look who came to visit.”</p>
+
     <p>The moment he saw her, his expression froze.</p>
-    <p>He clearly hadn't expected to see her either.</p>
-    <p>"Hey, Sora," he said after a moment. "How are you? It's been a long time since you last came by, hasn't it?"</p>
+
+    <p>He clearly hadn’t expected to see her either.</p>
+
+    <p>“Hey, Sora,” he said after a moment. “How are you? It’s been a long time since you last came by, hasn’t it?”</p>
+
     <p>Sora gave a small nod.</p>
-    <p>"It's been a while, Mr. Aoyama. I'm doing good. How about you?"</p>
+
+    <p>“It’s been a while, Mr. Aoyama. I'm doing good. How about you?”</p>
+
     <p>We talked for a little while downstairs before the three of us eventually headed up to my room.</p>
+
     <p>But the moment we entered, the atmosphere turned strangely awkward.</p>
+
     <p>Nobody really seemed to know what to say.</p>
+
     <p>I briefly wondered how I was supposed to explain Sora to Yuna before remembering she already knew.</p>
+
     <p>The manuscript had mentioned Sora long before tonight.</p>
+
     <p>And apparently, Yuna had believed every word of it.</p>
+
     <p>After sitting in silence for a while, I finally spoke up.</p>
-    <p>"Did you come here with your mom?"</p>
+
+    <p>“Did you come here with your mom?”</p>
+
     <p>Sora nodded slightly.</p>
-    <p>"We booked a hotel in Amsterdam," she explained. "But my mom still hasn't come back yet, so… I thought I'd come visit for a bit."</p>
+
+    <p>“We booked a hotel in Amsterdam,” she explained. “But my mom still hasn’t come back yet, so… I thought I’d come visit for a bit.”</p>
+
     <p>I glanced at the clock.</p>
+
     <p>It was already getting pretty late.</p>
-    <p>"Wouldn't it be dangerous going all the way back there by yourself this late?" I asked. "You could just stay here tonight if you want."</p>
+
+    <p>“Wouldn’t it be dangerous going all the way back there by yourself this late?” I asked. “You could just stay here tonight if you want.”</p>
+
     <p>The moment I said that, Yuna looked at me with a slightly annoyed expression.</p>
-    <p>Even then, I still couldn't stop myself from thinking she looked kind of cute.</p>
+
+    <p>Even then, I still couldn’t stop myself from thinking she looked kind of cute.</p>
+
     <p>Sora looked between the two of us nervously.</p>
-    <p>"T-That would really help," she replied quietly.</p>
+
+    <p>“T-That would really help,” she replied quietly.</p>
+
     <p>After asking Dad, he allowed her to stay over without much hesitation.</p>
+
     <p>Sometime during the night, I woke up feeling warmth on both sides of me.</p>
+
     <p>Yuna was hugging my arm tightly like always, her face buried against my shoulder.</p>
+
     <p>On the other side, Sora had quietly moved closer in her sleep sometime during the night.</p>
+
     <p>Unlike Yuna, her grip felt hesitant.</p>
+
     <p>Careful.</p>
-    <p>Almost like she was afraid I'd pull away if she held onto me too tightly.</p>
+
+    <p>Almost like she was afraid I’d pull away if she held onto me too tightly.</p>
+
     <p>For a while, I just stared silently at the ceiling.</p>
-    <p>Years ago, I never would've imagined seeing Sora again like this.</p>
+
+    <p>Years ago, I never would’ve imagined seeing Sora again like this.</p>
+
     <p>A few hours later, faint noises from the kitchen woke me up again.</p>
+
     <p>I slowly sat up and realized both Yuna and Sora were gone.</p>
+
     <p>Just before heading downstairs, I overheard part of their conversation.</p>
+
     <p>They were talking about me.</p>
+
     <p>More specifically, Yuna was clearly trying to figure out how Sora felt about me.</p>
-    <p>Honestly, that didn't surprise me at all.</p>
+
+    <p>Honestly, that didn’t surprise me at all.</p>
+
     <p>After listening for what felt like a few minutes, I finally walked into the kitchen.</p>
+
     <p>Both of them immediately looked over at me.</p>
-    <p>"You're finally awake?" Yuna said. "I was <em>this close</em> to kissing you if you stayed asleep any longer."</p>
-    <p>"Please don't say weird things first thing in the morning," I muttered.</p>
+
+    <p>“You’re finally awake?” Yuna said. “I was <em>this close</em> to kissing you if you stayed asleep any longer.”</p>
+
+    <p>“Please don’t say weird things first thing in the morning,” I muttered.</p>
+
     <p>Sora quietly looked away, clearly embarrassed just from hearing that.</p>
-    <p>"Why are you two eating crackers this late anyway?" I asked.</p>
-    <p>"We got hungry," Yuna answered immediately.</p>
+
+    <p>“Why are you two eating crackers this late anyway?” I asked.</p>
+
+    <p>“We got hungry,” Yuna answered immediately.</p>
+
     <p>I looked at the two of them for a moment.</p>
+
     <p>Yeah.</p>
+
     <p>That was obviously a lie.</p>
   `
 },
@@ -995,83 +1159,161 @@ const chapters = [
   words: "845 words",
   content: `
     <p class="drop-cap">Right as I went to sit down, Yuna went to the restroom. Leaving me and Sora alone.</p>
+
     <p>"I'm sorry", Sora said with a low voice. "For what?" I assumed that she thought it was troubling me that she stayed here.</p>
+
     <p>"For disappearing."</p>
+
     <p>I wanted to tell her that it was fine, but it really wasn't. We were so close, then one day she suddenly disappeared. Now after years she suddenly appeared at my front door.</p>
+
     <p>"I don't think we can continue where we left of... but I hope you'll forgive me."</p>
-    <p>"Don't worry about it," I responded.</p>
+
+    <p>“Don’t worry about it,” I responded.</p>
+
     <p>Sure, part of me was still angry.</p>
-    <p>Back then, Sora had disappeared so suddenly that for a long time I kept wondering if I'd done something wrong.</p>
+
+    <p>Back then, Sora had disappeared so suddenly that for a long time I kept wondering if I’d done something wrong.</p>
+
     <p>But sitting here now, hearing her apologize in that quiet voice, it became strangely difficult to hold onto that anger.</p>
+
     <p>Sora lowered her gaze toward the table.</p>
-    <p>"I wanted to come back earlier," she said softly. "I just… didn't know how to face you anymore."</p>
+
+    <p>“I wanted to come back earlier,” she said softly. “I just… didn’t know how to face you anymore.”</p>
+
     <p>For some reason, hearing that made my chest tighten a little.</p>
+
     <p>I looked away before she could notice.</p>
+
     <p>The kitchen suddenly felt unusually warm.</p>
-    <p>After all these years, I'd convinced myself she was just someone from my childhood.</p>
+
+    <p>After all these years, I’d convinced myself she was just someone from my childhood.</p>
+
     <p>Someone I used to know.</p>
+
     <p>So why did seeing her again make me this nervous?</p>
+
     <p>Before I could think any further, Yuna suddenly returned from the hallway.</p>
-    <p>"I leave for two minutes and the atmosphere already feels weird", she complained while narrowing her eyes at us.</p>
+
+    <p>“I leave for two minutes and the atmosphere already feels weird”, she complained while narrowing her eyes at us.</p>
+
     <p>"So, what were you two talking about? Stopping right as I enter is kinda rude don't ya think?"</p>
-    <p>"That's because it wasn't really something important," Sora replied calmly.</p>
+
+    <p>“That’s because it wasn’t really something important,” Sora replied calmly.</p>
+
     <p>Yuna looked unconvinced.</p>
-    <p>"Mmhm. Sure."</p>
+
+    <p>“Mmhm. Sure.”</p>
+
     <p>She slid back into her chair beside me before stealing one of the crackers from the plate in front of Sora.</p>
-    <p>"Hey," Sora protested quietly.</p>
-    <p>"You hesitated for too long, so I assumed you didn't want it anymore," Yuna replied immediately.</p>
+
+    <p>“Hey,” Sora protested quietly.</p>
+
+    <p>“You hesitated for too long, so I assumed you didn’t want it anymore,” Yuna replied immediately.</p>
+
     <p>The two of them stared at each other for a few seconds.</p>
+
     <p>Honestly, the atmosphere somehow felt even stranger than before.</p>
+
     <p>I let out a small sigh.</p>
-    <p>"You two are getting along surprisingly fast."</p>
-    <p>"Who says we're getting along?" Yuna asked instantly.</p>
+
+    <p>“You two are getting along surprisingly fast.”</p>
+
+    <p>“Who says we’re getting along?” Yuna asked instantly.</p>
+
     <p>At almost the exact same moment, Sora quietly muttered:</p>
-    <p>"We're not."</p>
+
+    <p>“We’re not.”</p>
+
     <p>The synchronized response caught both of them off guard.</p>
+
     <p>For a brief second, the tension cracked.</p>
+
     <p>Yuna burst out laughing first.</p>
+
     <p>And before long, even Sora let out a small smile.</p>
+
     <p>Seeing that expression again after all these years made something inside my chest ache a little.</p>
+
     <p>I quickly looked away before either of them noticed.</p>
+
     <p>The next morning I woke up with two beautiful girls hugging my arms tightly. Like I transformed into a pillow overnight.</p>
+
     <p>I was about to go back to sleep, as I, as their pillow couldn't abandon them. That's when I realized they weren't asleep at all. I assumed they were too comfy to move.</p>
+
     <p>"Would you mind letting me go?" I asked them both. Immediately both of them responded with "No. You're' our pillow. You're staying here.'" So I still went back to sleep.</p>
+
     <p>After a few more hours, my dad went to check on us as it was already lunchtime. I saw him walk in, before he said anything he winked at me and showed me a thumbs up. I tried to tell him that it wasn't like that be he had already left the room.</p>
+
     <p>When they finally let go we had some eggs with bacon and took turns showering.</p>
+
     <p>After knocking once and not hearing a response, I opened the bathroom door slightly.</p>
+
     <p>And immediately froze.</p>
-    <p>"S-Sora?"</p>
+
+    <p>“S-Sora?”</p>
+
     <p>She stared back at me in complete shock, a towel hurriedly pulled against her chest.</p>
+
     <p>For a second, neither of us moved.</p>
+
     <p>Then I instantly slammed the door shut again.</p>
-    <p>"Sorry!"</p>
+
+    <p>“Sorry!”</p>
+
     <p>My voice came out way louder than intended.</p>
+
     <p>A few seconds of complete silence followed.</p>
+
     <p>Then, from the other side of the door:</p>
-    <p>"It's okay…" Sora replied quietly.</p>
-    <p>"Why is your face so red?" Yuna asked suspiciously when walking by.</p>
-    <p>"It's nothing," I replied immediately.</p>
+
+    <p>“It’s okay…” Sora replied quietly.</p>
+
+    <p>“Why is your face so red?” Yuna asked suspiciously when walking by.</p>
+
+    <p>“It’s nothing,” I replied immediately.</p>
+
     <p>She narrowed her eyes before glancing toward the bathroom door behind me.</p>
+
     <p>Then back at me.</p>
-    <p>"…Haru."</p>
+
+    <p>“…Haru.”</p>
+
     <p>My stomach suddenly sank.</p>
-    <p>"You didn't accidentally walk in on Sora, did you?"</p>
-    <p>"I knocked first!" I defended myself instinctively.</p>
-    <p>The moment the words left my mouth, Yuna's expression changed completely.</p>
-    <p>"So you <em>did</em> walk in on her."</p>
-    <p>"…It was an accident."</p>
+
+    <p>“You didn’t accidentally walk in on Sora, did you?”</p>
+
+    <p>“I knocked first!” I defended myself instinctively.</p>
+
+    <p>The moment the words left my mouth, Yuna’s expression changed completely.</p>
+
+    <p>“So you <em>did</em> walk in on her.”</p>
+
+    <p>“…It was an accident.”</p>
+
     <p>Yuna stared at me for a few seconds before letting out a long sigh.</p>
-    <p>"You're unbelievable."</p>
+
+    <p>“You’re unbelievable.”</p>
+
     <p>Despite saying that, she still sat down beside me anyway.</p>
+
     <p>A few moments later, the bathroom door quietly opened.</p>
+
     <p>Sora stepped out slowly, avoiding eye contact with both of us.</p>
+
     <p>The atmosphere immediately became painful again.</p>
-    <p>"…Sorry," I muttered once more.</p>
+
+    <p>“…Sorry,” I muttered once more.</p>
+
     <p>Sora shook her head lightly.</p>
-    <p>"I said it was okay."</p>
+
+    <p>“I said it was okay.”</p>
+
     <p>For some reason, hearing her say that calmly only made me feel even guiltier.</p>
+
     <p>Beside me, Yuna suddenly leaned against my shoulder.</p>
+
     <p>Almost like she was trying to claim her spot without directly saying it.</p>
+
     <p>I pretended not to notice.</p>
   `
 },
@@ -1080,85 +1322,163 @@ title: "The game",
 words: "734 words",
 content: `
 <p class="drop-cap">After taking a shower myself, I went to my room to get dressed for the basketball game I had later that day.</p>
-<p>My dad and stepmom were leaving early, so we ended up leaving the house sooner too. I didn't really want to leave Yuna and Sora alone in a house they barely knew yet, so I brought them with me.</p>
-<p>"I see your dream came true," Sora said quietly while we walked toward the gym.</p>
-<p>"Yeah," I replied. "It's going pretty well too."</p>
-<p>"What dream?" Yuna asked from behind us.</p>
-<p>"When we were kids, I always wanted to join a real team."</p>
+<p>My dad and stepmom were leaving early, so we ended up leaving the house sooner too. I didn’t really want to leave Yuna and Sora alone in a house they barely knew yet, so I brought them with me.</p>
+
+<p>“I see your dream came true,” Sora said quietly while we walked toward the gym.</p>
+
+<p>“Yeah,” I replied. “It’s going pretty well too.”</p>
+
+<p>“What dream?” Yuna asked from behind us.</p>
+
+<p>“When we were kids, I always wanted to join a real team.”</p>
+
 <p>Sora gave a small smile.</p>
-<p>"You used to talk about it constantly."</p>
-<p>"And you used to tell me I was annoying constantly."</p>
-<p>"That too."</p>
+
+<p>“You used to talk about it constantly.”</p>
+
+<p>“And you used to tell me I was annoying constantly.”</p>
+
+<p>“That too.”</p>
+
 <p>Yuna looked between us with narrowed eyes.</p>
-<p>"You two seriously have way too much history."</p>
+
+<p>“You two seriously have way too much history.”</p>
+
 <p>Once we arrived, I realized none of my teammates were there yet.</p>
+
 <p>The gym was almost empty, filled only with the squeaking echo of our shoes against the polished floor.</p>
+
 <p>Since we still had time before the game, we ended up messing around with a ball together.</p>
+
 <p>Me against Yuna and Sora.</p>
+
 <p>Which honestly felt unfair for them.</p>
-<p>"Hey! Stop hogging the ball!" Yuna complained after I stole it from her again.</p>
-<p>"You literally dribble with your eyes closed."</p>
-<p>"That's called talent."</p>
-<p>"That's called dangerous."</p>
+
+<p>“Hey! Stop hogging the ball!” Yuna complained after I stole it from her again.</p>
+
+<p>“You literally dribble with your eyes closed.”</p>
+
+<p>“That’s called talent.”</p>
+
+<p>“That’s called dangerous.”</p>
+
 <p>Meanwhile, Sora quietly moved across the court much more smoothly than I remembered.</p>
-<p>When she caught one of Yuna's passes and scored cleanly from the corner, I paused for a second.</p>
-<p>"You've gotten better," I admitted.</p>
+
+<p>When she caught one of Yuna’s passes and scored cleanly from the corner, I paused for a second.</p>
+
+<p>“You’ve gotten better,” I admitted.</p>
+
 <p>Sora looked slightly surprised hearing that from me.</p>
+
 <p>But then I added:</p>
-<p>"Still not good enough, though."</p>
-<p>"…You're annoying."</p>
+
+<p>“Still not good enough, though.”</p>
+
+<p>“…You’re annoying.”</p>
+
 <p>I laughed lightly.</p>
+
 <p>Years ago, we used to play together almost every day.</p>
+
 <p>No matter how much she practiced, I always ended up beating her somehow.</p>
+
 <p>Back then, Sora used to glare at me afterward and swear she'd win next time.</p>
+
 <p>Seeing her now, I suddenly wondered if she'd continued practicing all this time.</p>
+
 <p>Even after disappearing.</p>
+
 <p>For some reason, that thought made my chest feel strangely tight.</p>
-<p>"Oi, stop staring at her and play properly!" Yuna shouted.</p>
+
+<p>“Oi, stop staring at her and play properly!” Yuna shouted.</p>
+
 <p>The basketball hit me directly in the face.</p>
-<p>"OW!"</p>
+
+<p>“OW!”</p>
+
 <p>Yuna immediately burst out laughing.</p>
+
 <p>Even Sora quietly covered her mouth to hide a smile.</p>
-<p>"Woah Haru, you actually managed to pull it off." One of my teammates said behind me.</p>
-<p>"Was 1 not enough?" The other said.</p>
+
+<p>“Woah Haru, you actually managed to pull it off.” One of my teammates said behind me.</p>
+
+<p>“Was 1 not enough?” The other said.</p>
+
 <p>If only they didn't tease me with them right next to me.</p>
-<p>"We're not his girlfriends!" Yuna and Sora immediately replied at the same time.</p>
-<p>"Ouch" One of them said.</p>
+
+<p>“We're not his girlfriends!” Yuna and Sora immediately replied at the same time.</p>
+
+<p>“Ouch” One of them said.</p>
+
 <p>Yuna and Sora went to sit on the stands.</p>
-<p>"You better introduce me, bro." My friend whispered in my ear.</p>
+
+<p>“You better introduce me, bro.” My friend whispered in my ear.</p>
+
 <p>I wasn't planning on introducing anyone. I'm sure they would only feel uncomfortable meeting my idiotic friends.</p>
+
 <p>As the game started, I suddenly became a lot more nervous than usual.</p>
+
 <p>Maybe because Yuna and Sora were watching from the stands.</p>
-<p>I didn't really want to embarrass myself in front of them.</p>
+
+<p>I didn’t really want to embarrass myself in front of them.</p>
+
 <p>The whistle blew.</p>
+
 <p>The moment the ball touched my hands, my body moved almost automatically.</p>
+
 <p>Dribble.</p>
+
 <p>Step.</p>
+
 <p>Pass.</p>
+
 <p>The familiar sound of sneakers screeching against the floor echoed through the gym.</p>
-<p>"Nice pass!"</p>
-<p>"Defense!"</p>
-<p>"Watch the left side!"</p>
+
+<p>“Nice pass!”</p>
+
+<p>“Defense!”</p>
+
+<p>“Watch the left side!”</p>
+
 <p>The pace of the game quickly sped up.</p>
+
 <p>Partway through the first quarter, one of my teammates threw me a pass near the three-point line.</p>
+
 <p>Without thinking, I shot.</p>
+
 <p>The ball spun through the air cleanly before dropping straight through the hoop.</p>
+
 <p>Swish.</p>
-<p>"LET'S GO, HARU!" Yuna shouted loudly from the stands.</p>
+
+<p>“LET’S GO, HARU!” Yuna shouted loudly from the stands.</p>
+
 <p>Several people immediately turned to look at her.</p>
-<p>Even from across the court, I could see her realize how loud she'd been.</p>
+
+<p>Even from across the court, I could see her realize how loud she’d been.</p>
+
 <p>Her face instantly turned red.</p>
+
 <p>Sitting beside her, Sora quietly laughed.</p>
+
 <p>For some reason, seeing that made me grin a little too.</p>
+
 <p>By the second half, the game had already tilted heavily in our favor.</p>
+
 <p>Every shot I took somehow felt lighter than usual today.</p>
+
 <p>Maybe because every time I glanced toward the stands, I could see the two of them watching me.</p>
+
 <p>In the end, we won 78–63.</p>
+
 <p>The moment the final whistle blew, my teammates immediately crowded around me.</p>
-<p>"Bro was cooking today."</p>
-<p>"You trying to show off in front of the girls or something?"</p>
-<p>"I hate all of you," I replied while out of breath.</p>
-<p>"Sounds like denial to me."</p>
+
+<p>“Bro was cooking today.”</p>
+
+<p>“You trying to show off in front of the girls or something?”</p>
+
+<p>“I hate all of you,” I replied while out of breath.</p>
+
+<p>“Sounds like denial to me.”</p>
 `
 },
 {
@@ -1166,57 +1486,109 @@ title: "Hangout",
 words: "638 words",
 content: `
 <p class="drop-cap">After the game was over, we went upstairs to celebrate our victory. Yuna and Sora also came with me, of course, the guys didn't mind it.</p>
+
 <p>When we got there, I could see the guys were trying to approach the girls. Yuna handles it pretty good. Like she had done this before. On the other hand, Sora seemed to stress about it.</p>
+
 <p>She grabbed the sleeve of my hoodie and stayed close beside me while the others slowly filled the room with noise again. Someone had already connected a phone to the speaker, and music started playing in the background while a few of the guys argued over what to order.</p>
-<p>"You okay?" I asked quietly.</p>
+
+<p>“You okay?” I asked quietly.</p>
+
 <p>She nodded almost immediately, but her grip on my sleeve tightened anyway.</p>
-<p>"There's just… a lot of people," she muttered.</p>
+
+<p>“There’s just… a lot of people,” she muttered.</p>
+
 <p>Yuna noticed us from across the room and smirked.</p>
-<p>"Sora's social battery died already?"</p>
-<p>"I-I'm fine," Sora replied, embarrassed.</p>
-<p>"Sure you are."</p>
-<p>A couple of the guys laughed, though not in a mean way. Thankfully, they seemed to understand Sora wasn't really comfortable around strangers. After that, they stopped trying to drag her into conversations every five seconds.</p>
+
+<p>“Sora’s social battery died already?”</p>
+
+<p>“I-I’m fine,” Sora replied, embarrassed.</p>
+
+<p>“Sure you are.”</p>
+
+<p>A couple of the guys laughed, though not in a mean way. Thankfully, they seemed to understand Sora wasn’t really comfortable around strangers. After that, they stopped trying to drag her into conversations every five seconds.</p>
+
 <p>I ended up sitting down on one of the couches with Sora beside me while the others started setting up games.</p>
+
 <p>At first it was just casual stuff. Trash talk about the match, arguments over who carried hardest, complaints about missed shots. Someone replayed the final point on their phone at least six times while everybody yelled over each other.</p>
-<p>"You almost sold at the end," one of them told me.</p>
-<p>"We still won."</p>
-<p>"Barely."</p>
-<p>"That sounds like winning to me."</p>
+
+<p>“You almost sold at the end,” one of them told me.</p>
+
+<p>“We still won.”</p>
+
+<p>“Barely.”</p>
+
+<p>“That sounds like winning to me.”</p>
+
 <p>Sora quietly laughed beside me, and honestly, hearing that felt more rewarding than the victory itself.</p>
+
 <p>A little later, one of the guys brought over drinks while another dumped a pile of cards onto the table.</p>
-<p>"Alright," he announced. "Loser of each round has to answer a question honestly."</p>
-<p>"That sounds terrible," I said immediately.</p>
-<p>"That's because you definitely have secrets."</p>
+
+<p>“Alright,” he announced. “Loser of each round has to answer a question honestly.”</p>
+
+<p>“That sounds terrible,” I said immediately.</p>
+
+<p>“That’s because you definitely have secrets.”</p>
+
 <p>The games started harmless enough. Dumb questions, stupid dares, embarrassing stories from middle school. Yuna somehow dominated every round while exposing everybody else without revealing anything herself.</p>
+
 <p>Meanwhile, Sora slowly relaxed more and more.</p>
+
 <p>At some point, she was even laughing openly.</p>
+
 <p>Then one of the guys suddenly looked toward her.</p>
-<p>"Alright, Sora. Your turn."</p>
+
+<p>“Alright, Sora. Your turn.”</p>
+
 <p>She froze.</p>
-<p>"What's your type?"</p>
+
+<p>“What’s your type?”</p>
+
 <p>The room immediately got louder.</p>
-<p>"OHHHH—"</p>
-<p>"Good question."</p>
-<p>"Don't bully her," Yuna sighed.</p>
+
+<p>“OHHHH—”</p>
+
+<p>“Good question.”</p>
+
+<p>“Don’t bully her,” Yuna sighed.</p>
+
 <p>Sora looked completely overwhelmed by the attention. Her eyes shifted around the room for help before eventually landing on me.</p>
-<p>"…Someone calm," she answered softly.</p>
+
+<p>“…Someone calm,” she answered softly.</p>
+
 <p>The room quieted a little.</p>
-<p>"Calm?"</p>
-<p>"And kind," she added. "Someone who stays."</p>
+
+<p>“Calm?”</p>
+
+<p>“And kind,” she added. “Someone who stays.”</p>
+
 <p>For some reason, the way she said that made my chest feel strangely heavy.</p>
+
 <p>One of the guys leaned back dramatically.</p>
-<p>"That's way too genuine for this game."</p>
-<p>"Yeah, we were expecting something like 'tall guys' or whatever."</p>
+
+<p>“That’s way too genuine for this game.”</p>
+
+<p>“Yeah, we were expecting something like ‘tall guys’ or whatever.”</p>
+
 <p>Sora hid part of her face behind her cup while everyone laughed again.</p>
+
 <p>Not long after that, food finally arrived, immediately killing whatever structure the hangout had left. Boxes opened everywhere, people stole fries from each other, and somebody almost dropped a drink onto the speaker.</p>
+
 <p>The atmosphere became messy in the comfortable kind of way.</p>
+
 <p>At one point, Yuna ended up in an argument over a video game with two of the guys while Sora quietly sat beside me eating pizza.</p>
+
 <p>Then she looked over at me.</p>
-<p>"…Today was fun."</p>
+
+<p>“…Today was fun.”</p>
+
 <p>I glanced at her.</p>
-<p>"You were nervous the entire time."</p>
-<p>"I know," she admitted. "But still."</p>
+
+<p>“You were nervous the entire time.”</p>
+
+<p>“I know,” she admitted. “But still.”</p>
+
 <p>For a moment, the noise around us faded into the background.</p>
+
 <p>The team was still yelling at each other across the room, music was still playing too loudly, and Yuna was somehow threatening to beat someone in Smash Bros after already beating them in basketball earlier.</p>
 `
 }
