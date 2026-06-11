@@ -552,8 +552,9 @@
     .drawer-overlay { display: block; }
 
     .main {
-      height: 100dvh;
-      height: 100vh;
+      height: 100vh;        /* fallback for very old browsers */
+      height: 100dvh;       /* overrides with dynamic viewport height */
+      max-height: 100dvh;
     }
 
     .content-header {
