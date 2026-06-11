@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — cocodekat</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #FAF9F7;
+  --surface: #FFFFFF;
+  --accent: #D97557;
+  --accent-soft: #F5EDE8;
+  --text: #2C2C2A;
+  --text-muted: #888780;
+  --text-hint: #B4B2A9;
+  --border: #D3D1C7;
+  --border-soft: #E5E3DC;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+/* ─── BACK LINK ─── */
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-hint);
+  text-decoration: none;
+  margin-bottom: 40px;
+  align-self: flex-start;
+  transition: color var(--transition);
+}
+.back-link:hover { color: var(--accent); }
+.back-link svg {
+  width: 15px;
+  height: 15px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ─── HEADER ─── */
+.page-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+  margin-bottom: 12px;
+  text-align: center;
+}
+.page-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.page-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 48px;
+  max-width: 400px;
+}
+
+/* ─── AUTHOR CARDS ─── */
+.authors {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 680px;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-soft);
+  margin-bottom: 16px;
+}
+.author-name {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.author-role {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.divider-thin {
+  width: 32px;
+  height: 1px;
+  background: var(--border-soft);
+  margin: 0 auto 16px;
+}
+.author-bio {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+.contact-block {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.contact-row svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--text-hint);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+.contact-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 400;
+}
+.contact-row a:hover { text-decoration: underline; }
+.contact-label {
+  color: var(--text-hint);
+  font-size: 11px;
+  min-width: 52px;
+  text-align: left;
+}
+
+/* ─── FOOTER ─── */
+.divider {
+  width: 100%;
+  max-width: 680px;
+  border: none;
+  border-top: 1px solid var(--border-soft);
+  margin: 40px 0 0;
+}
+.footer-note {
+  font-size: 12px;
+  color: var(--text-hint);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 560px) {
+  .authors { grid-template-columns: 1fr; }
+  .page-title { font-size: 24px; }
+  .back-link { align-self: center; }
+}
+</style>
+</head>
+<body>
+
+<a href="./index.html" class="back-link">
+  <svg viewBox="0 0 16 16"><path d="M10 12L6 8l4-4"/></svg>
+  Back
+</a>
+
+<p class="page-label">Written by cocodekat</p>
+<h1 class="page-title">About the authors</h1>
+<p class="page-sub">The people behind the stories.</p>
+
+<div class="authors">
+
+  <!-- ─── AUTHOR 1 ─── -->
+  <div class="card">
+    <img class="avatar" src="./author1.png" alt="Author 1">
+    <div class="author-name">Author One's Name</div>
+    <div class="author-role">Author</div>
+    <div class="divider-thin"></div>
+    <p class="author-bio">A short bio about this author goes here. Tell readers a little about who you are and what you write.</p>
+    <div class="contact-block">
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="contact-label">Email</span>
+        <a href="mailto:author1@example.com">author1@example.com</a>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2z"/><line x1="9" y1="9" x2="9" y2="9"/><line x1="12" y1="9" x2="12" y2="9"/><line x1="15" y1="9" x2="15" y2="9"/></svg>
+        <span class="contact-label">Discord</span>
+        <a href="https://discord.com/users/YOUR_ID_HERE" target="_blank">@username</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── AUTHOR 2 ─── -->
+  <div class="card">
+    <img class="avatar" src="./author2.png" alt="Author 2">
+    <div class="author-name">Author Two's Name</div>
+    <div class="author-role">Author</div>
+    <div class="divider-thin"></div>
+    <p class="author-bio">A short bio about this author goes here. Tell readers a little about who you are and what you write.</p>
+    <div class="contact-block">
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span class="contact-label">Email</span>
+        <a href="mailto:author2@example.com">author2@example.com</a>
+      </div>
+      <div class="contact-row">
+        <svg viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2z"/><line x1="9" y1="9" x2="9" y2="9"/><line x1="12" y1="9" x2="12" y2="9"/><line x1="15" y1="9" x2="15" y2="9"/></svg>
+        <span class="contact-label">Discord</span>
+        <a href="https://discord.com/users/YOUR_ID_HERE" target="_blank">@username</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="divider">
+<p class="footer-note">cocodekat — all stories written with love</p>
+
+</body>
+</html>
